@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  eu-vehicle-assessor:
+    # Build the image from the Dockerfile in the current directory
+    build: .
+    
+    # Container name for easy reference
+    container_name: eu_vehicle_assessor_app
+    
+    # Port mapping:
+    # Map port 8080 on the host machine to port 8501 in the container
+    ports:
+      - "8080:8501"
+      
+    # Volume mounting:
+    # This syncs the local code directory with the container's /app directory.
+    # Any changes you make to the .py files locally will be
+    # reflected in the container, and Streamlit will auto-reload.
+    volumes:
+      - .:/app
+      
+    # Restart policy
+    restart: unless-stopped
